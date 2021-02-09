@@ -12,24 +12,11 @@ pool:
 steps:
 # Azure file copy
 # Copy files to Azure Blob Storage or virtual machines
-- task: AzureFileCopy@4
+- task: AzureFileCopy@3
   inputs:
-    sourcePath: '**target/target/site/serenity'
-    azureSubscription: 'Visual Studio Enterprise (48294428-ab48-4973-abc7-d0c6c5a6a1dd)'
-    destination: 'AzureBlob'
+    SourcePath: 'target/target/site/serenity'
+    azureSubscription: 'AzCopy'
+    Destination: 'AzureBlob'
     storage: 'practicepipelines'
-    containerName: '$web'
-    #blobPrefix: # Optional
-    #resourceGroup: # Required when destination == AzureVMs
-    #resourceFilteringMethod: 'machineNames' # Optional. Options: machineNames, tags
-    #machineNames: # Optional
-    #vmsAdminUserName: # Required when destination == AzureVMs
-    #vmsAdminPassword: # Required when destination == AzureVMs
-    #targetPath: # Required when destination == AzureVMs
-    #additionalArgumentsForBlobCopy: # Optional
-    #additionalArgumentsForVMCopy: # Optional
-    #enableCopyPrerequisites: false # Optional
-    #copyFilesInParallel: true # Optional
-    #cleanTargetBeforeCopy: false # Optional
-    #skipCACheck: true # Optional
-    #sasTokenTimeOutInMinutes: # Optional
+    ContainerName: '$web'
+
