@@ -4,16 +4,32 @@
 # https://aka.ms/yaml
 
 trigger:
-- main
+- master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'vs2017-win2016'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+# Azure file copy
+# Copy files to Azure Blob Storage or virtual machines
+- task: AzureFileCopy@4
+  inputs:
+    sourcePath: '**target/target/site/serenity'
+    azureSubscription: 'Visual Studio Enterprise (48294428-ab48-4973-abc7-d0c6c5a6a1dd)'
+    destination: 'AzureBlob'
+    storage: 'practicepipelines'
+    containerName: '$web'
+    #blobPrefix: # Optional
+    #resourceGroup: # Required when destination == AzureVMs
+    #resourceFilteringMethod: 'machineNames' # Optional. Options: machineNames, tags
+    #machineNames: # Optional
+    #vmsAdminUserName: # Required when destination == AzureVMs
+    #vmsAdminPassword: # Required when destination == AzureVMs
+    #targetPath: # Required when destination == AzureVMs
+    #additionalArgumentsForBlobCopy: # Optional
+    #additionalArgumentsForVMCopy: # Optional
+    #enableCopyPrerequisites: false # Optional
+    #copyFilesInParallel: true # Optional
+    #cleanTargetBeforeCopy: false # Optional
+    #skipCACheck: true # Optional
+    #sasTokenTimeOutInMinutes: # Optional
