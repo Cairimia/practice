@@ -33,7 +33,7 @@ jobs:
     steps:
     - uses: azure/login@v1
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        creds: ${{ secrets.FUNCTION_DEPLOY }}
 
     - run: |
         az webapp list --query "[?state=='Running']"
