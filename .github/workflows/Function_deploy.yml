@@ -7,11 +7,11 @@ on:
 # For help, go to https://github.com/Azure/Actions
 #
 # 1. Set up the following secrets in your repository:
-#   FUNCTION_DEPLOY_2
+#   FUNCTION_DEPLOY
 #
 # 2. Change these variables for your configuration:
 env:
-  AZURE_FUNCTIONAPP_NAME: 'azfun-odtcustomer-ac'    # set this to your application's name
+  AZURE_FUNCTIONAPP_NAME: 'azfun-odtapiac-ac'    # set this to your application's name
   AZURE_FUNCTIONAPP_PACKAGE_PATH: './NodeJS-Function/'      # set this to the path to your web app project, defaults to the repository root
   NODE_VERSION: '14.x'                     # set this to the node version to use (supports 8.x, 10.x, 12.x)
 
@@ -37,18 +37,18 @@ jobs:
         npm run test --if-present
         popd
         
-#     #Create .zip
-#     - name: "Create ZIP"
-#       run: |
-#         Get-ChildItem $pwd | Compress-Archive -Destination ./backend.zip
-#       shell: pwsh        
+     #Create .zip
+    - name: "Create ZIP"
+      run: |
+         Get-ChildItem $pwd | Compress-Archive -Destination ./backend.zip
+      shell: pwsh        
 
     - name: 'Run Azure Functions Action'
       uses: Azure/functions-action@v1
       id: fa
       with:
         app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
-        package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
-        publish-profile: ${{ secrets.FUNCTION_DEPLOY_2 }}
+        package: ./backend.zip
+        publish-profile: ${{ secrets.FUNCTION_DEPLOY }}
 
 # For more samples to get started with GitHub Action workflows to deploy to Azure, refer to https://github.com/Azure/actions-workflow-samples
