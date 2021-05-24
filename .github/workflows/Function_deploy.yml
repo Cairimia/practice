@@ -37,18 +37,18 @@ jobs:
         npm run test --if-present
         popd
     
-    #Create .zip
-    - name: "Create ZIP"
-      run: |
-        Get-ChildItem $pwd | Compress-Archive -Destination ./backend.zip
-      shell: pwsh
+#     #Create .zip
+#     - name: "Create ZIP"
+#       run: |
+#         Get-ChildItem $pwd | Compress-Archive -Destination ./backend.zip
+#       shell: pwsh
 
     - name: 'Run Azure Functions Action'
       uses: Azure/functions-action@v1
       id: fa
       with:
         app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
-        package: ./backend.zip
+        package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
         publish-profile: ${{ secrets.FUNCTION_DEPLOY }}
 
 # For more samples to get started with GitHub Action workflows to deploy to Azure, refer to https://github.com/Azure/actions-workflow-samples
