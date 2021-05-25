@@ -51,7 +51,7 @@ jobs:
     - name: "Upload to jfrog"
       run: |
         jfrog rt u "./backend.zip" Cairimia/practice
-      shell: sh 
+      shell: bash
      
     - name: 'Run Azure Functions Action'
       uses: Azure/functions-action@v1
