@@ -26,7 +26,7 @@ jobs:
     - name: Setup JFrog CLI
       uses: jfrog/setup-jfrog-cli@v1.2.0
       env:
-        JF_ARTIFACTORY_1: ${{ env.JF_ARTIFACTORY_1 }}
+        JF_ARTIFACTORY_1: ${{ secrets.JF_ARTIFACTORY_1 }}
 
     - name: Setup Node ${{ env.NODE_VERSION }} Environment
       uses: actions/setup-node@v1
