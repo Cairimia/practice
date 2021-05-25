@@ -50,8 +50,7 @@ jobs:
      
     - name: "Upload to jfrog"
       run: |
-        jfrog rt u ".\backend.zip" Cairimia/practice
-      shell: bash
+        jfrog rt u "./backend.zip" default-npm-local
      
     - name: 'Run Azure Functions Action'
       uses: Azure/functions-action@v1
