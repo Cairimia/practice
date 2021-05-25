@@ -45,9 +45,11 @@ jobs:
      #Create .zip
     - name: "Create ZIP"
       run: |
-         Get-ChildItem $pwd | Compress-Archive -Destination .\backend.zip
-         jfrog rt u ".\backend.zip" Cairimia/practice
-#         shell: pwsh
+         Get-ChildItem $pwd | Compress-Archive -Destination ./backend.zip
+     
+    - name: "Create ZIP"
+      run: |
+        jfrog rt u "./backend.zip" Cairimia/practice
      
     - name: 'Run Azure Functions Action'
       uses: Azure/functions-action@v1
