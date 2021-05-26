@@ -45,12 +45,12 @@ jobs:
      #Create .zip
     - name: "Create ZIP"
       run: |
-         Get-ChildItem $pwd | Compress-Archive -Destination ./backend.zip
+         Get-ChildItem './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}' | Compress-Archive -Destination ./backend01.zip
       shell: pwsh   
      
     - name: "Upload to jfrog"
       run: |
-        jfrog rt u "./backend.zip" default-npm-local
+        jfrog rt u "./backend01.zip" default-npm-local
      
     - name: 'Run Azure Functions Action'
       uses: Azure/functions-action@v1
