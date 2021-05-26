@@ -52,12 +52,12 @@ jobs:
       run: |
         jfrog rt u "./backend01.zip" default-npm-local
      
-    - name: 'Run Azure Functions Action'
-      uses: Azure/functions-action@v1
-      id: fa
-      with:
-        app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
-        package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
-        publish-profile: ${{ secrets.FUNCTION_DEPLOY }}
+#     - name: 'Run Azure Functions Action'
+#       uses: Azure/functions-action@v1
+#       id: fa
+#       with:
+#         app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
+#         package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+#         publish-profile: ${{ secrets.FUNCTION_DEPLOY }}
 
 # For more samples to get started with GitHub Action workflows to deploy to Azure, refer to https://github.com/Azure/actions-workflow-samples
